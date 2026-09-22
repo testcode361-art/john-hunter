@@ -1,0 +1,98 @@
+@import "tailwindcss";
+
+@theme {
+  --color-charcoal: #121111;
+  --color-espresso: #493025;
+  --color-gold: #D59A4A;
+  --color-amber: #F0B465;
+  --color-sandstone: #C88C62;
+  --color-cream: #F5E9D7;
+  --color-beige: #E6C9A8;
+  --color-ivory: #FFF9F0;
+  
+  --font-display: "Playfair Display", serif;
+  --font-body: "Inter", sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-charcoal text-ivory font-body antialiased;
+  }
+  
+  h1, h2, h3, h4 {
+    @apply font-display;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-gold text-charcoal px-8 py-3 rounded-full font-semibold 
+           transition-all duration-300 hover:bg-amber hover:scale-105 
+           hover:shadow-lg hover:shadow-gold/30;
+  }
+  
+  .section-title {
+    @apply text-4xl md:text-5xl font-bold mb-6 relative;
+  }
+  
+  .section-title::after {
+    content: '';
+    @apply block w-24 h-1 bg-gold mt-4 mx-auto;
+  }
+}
+
+/* Custom animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, #D59A4A, #F0B465, #D59A4A);
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 3s linear infinite;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-charcoal;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gold rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-amber;
+}
